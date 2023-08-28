@@ -29,13 +29,19 @@ pipeline {
         }
         stage('Run Container') {
             steps {
-                sh 'docker run -p 5000:5000 --name mywebapp1_container poornimaasundkar/mywebapp1:latest'
+                sh 'docker run -it -d -p 5000:5000 --name mywebapp1_container poornimaasundkar/mywebapp1:latest'
             }
         }
         stage('Access Webapp') {
             steps {
                 echo 'Access Webapp on https://localhost:5000'
             }
+        }
+    }
+    post { 
+        always { 
+            sh 'docker stop mywebapp1_container'
+        sh 'docker rm mywebapp1_container'
         }
     }
 }
