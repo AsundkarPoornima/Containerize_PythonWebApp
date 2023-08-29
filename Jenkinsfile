@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Cleanup') {
             steps {
-                sh 'rm -rf /var/lib/jenkins/workspace/project-1.0-pipeline@2/.*'
+                sh 'rm -rf /var/lib/jenkins/workspace/project-1.0-pipeline@2/*'
             }
         }
         stage('Clone Code') {
