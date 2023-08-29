@@ -8,8 +8,10 @@ pipeline {
             }
         }
         stage('Clone Code') {
+            steps {
                 /*git branch: 'main', url: 'https://github.com/AsundkarPoornima/Containerize_PythonWebApp.git'*/
                 checkout scm     
+            }
         }
         stage('Build Image') {
             steps {
