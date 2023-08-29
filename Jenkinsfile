@@ -2,11 +2,11 @@ pipeline {
     agent any
 
     stages {
-         /* stage('Cleanup') {
+        stage('Cleanup') {
             steps {
-                echo 'Hello World'
+                sh 'rm -rf /var/lib/jenkins/workspace/project-1.0-pipeline@2/*'
             }
-        }*/
+        }
         stage('Clone Code') {
             steps {
                 git branch: 'main', url: 'https://github.com/AsundkarPoornima/Containerize_PythonWebApp.git'
