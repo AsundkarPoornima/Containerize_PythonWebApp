@@ -19,7 +19,7 @@ pipeline {
         }
         stage('Login DockerHub') {
             steps {
-                sh 'docker login --username poornimaasundkar --password poonu@2397'
+                sh 'docker login --username poornimaasundkar --password poonusumit@2397'
             }
         }
         stage('Push Image') {
