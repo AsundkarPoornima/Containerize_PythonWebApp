@@ -2,6 +2,9 @@ pipeline {
     agent {
         label 'agent-linux'
     }
+    environment{
+         DockerHub_Credentials=credentials('DockerHub')
+    }
     stages {
         stage('Cleanup') {
             steps {
@@ -23,7 +26,10 @@ pipeline {
         }
         stage('Login DockerHub') {
             steps {
-                sh 'docker login --username poornimaasundkar --password poonusumit@2397'
+                script{
+               // sh 'docker login --username poornimaasundkar --password poonusumit@2397'
+            sh 'docker login --username ${DockerHub_Credentials.Username} --password ${DockerHub_Credentials.Password}
+                }
             }
         }
         stage('Push Image') {
