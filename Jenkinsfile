@@ -27,7 +27,8 @@ pipeline {
         stage('Login DockerHub') {
             steps {
                // sh 'docker login --username poornimaasundkar --password poonusumit@2397'
-            sh 'echo $DOCKERHUB_CREDENTIALS_PSM | docker login --username $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+           // sh 'echo $DOCKERHUB_CREDENTIALS_PSM | docker login --username $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+                 sh 'docker login --username ${DOCKERHUB_CREDENTIALS.username} --password {DOCKERHUB_CREDENTIALS.password}'
             }
         }
         stage('Push Image') {
