@@ -21,7 +21,7 @@ pipeline {
         }
         stage('Build Image') {
             steps {
-                sh 'docker build -t poornimaasundkar/mywebapp1:$BUILD_NUMBER .'
+                sh 'docker build -t poornimaasundkar/mywebapp1:latest .'
             }
         }
         stage('Login DockerHub') {
@@ -33,12 +33,12 @@ pipeline {
         }
         stage('Push Image') {
             steps {
-                sh 'docker push poornimaasundkar/mywebapp1:$BUILD_NUMBER'
+                sh 'docker push poornimaasundkar/mywebapp1:latest'
             }
         }
         stage('Run Container') {
             steps {
-                sh 'docker run -d -p 5001:5000 --name mywebapp1_container poornimaasundkar/mywebapp1:$BUILD_NUMBER'
+                sh 'docker run -d -p 5001:5000 --name mywebapp1_container poornimaasundkar/mywebapp1:latest'
             }
         }
         stage('Access Webapp') {
