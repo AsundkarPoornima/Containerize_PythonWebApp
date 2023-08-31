@@ -3,7 +3,7 @@ pipeline {
         label 'agent-linux'
     }
     environment{
-         DockerHub_Credentials=credentials('DockerHub')
+         DOCKERHUB_CREDENTIALS = credentials('DockerHub')
     }
     stages {
         stage('Cleanup') {
@@ -21,25 +21,23 @@ pipeline {
         }
         stage('Build Image') {
             steps {
-                sh 'docker build -t poornimaasundkar/mywebapp1:latest .'
+                sh 'docker build -t poornimaasundkar/mywebapp1:$BUILD_NUMBER .'
             }
         }
         stage('Login DockerHub') {
             steps {
-                script{
                // sh 'docker login --username poornimaasundkar --password poonusumit@2397'
-            sh 'docker login --username ${DockerHub_Credentials.Username} --password ${DockerHub_Credentials.Password}
-                }
+            sh 'echo $DOCKERHUB_CREDENTIALS_PSM | docker login --username $DOCKERHUB_CREDENTIALS_USR --password-stdin
             }
         }
         stage('Push Image') {
             steps {
-                sh 'docker push poornimaasundkar/mywebapp1:latest'
+                sh 'docker push poornimaasundkar/mywebapp1:$BUILD_NUMBER'
             }
         }
         stage('Run Container') {
             steps {
-                sh 'docker run -d -p 5001:5000 --name mywebapp1_container poornimaasundkar/mywebapp1:latest'
+                sh 'docker run -d -p 5001:5000 --name mywebapp1_container poornimaasundkar/mywebapp1:$BUILD_NUMBER'
             }
         }
         stage('Access Webapp') {
