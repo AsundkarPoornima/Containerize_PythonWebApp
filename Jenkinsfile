@@ -46,5 +46,4 @@ pipeline {
                 sh 'echo 'Access Webapp on https://$my_ip:5001''
             }
         }
-    }
 }
