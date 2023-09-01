@@ -31,6 +31,7 @@ pipeline {
                         sh "docker login --username $DOCKERHUB_USERNAME --password-stdin <<< $DOCKERHUB_PASSWORD"
                     }
                 }*/
+                sh 'docker login --username poornimaasundkar --password poonusumit@2397'
             }
         }   
         stage('Push Image') {
