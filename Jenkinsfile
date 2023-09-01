@@ -28,6 +28,7 @@ pipeline {
             steps {
           // sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login --username $DOCKERHUB_CREDENTIALS_USR --password-stdin'
                //  sh 'docker login --username ${DOCKERHUB_CREDENTIALS.username} --password {DOCKERHUB_CREDENTIALS.password}'
+               //  sh 'docker login --username  withCredentials([usernameColonPassword(credentialsId: 'DockerHub', variable: 'Docker_Cred')]) 
                 sh 'echo "DockerHub Login"'
             }
         }
