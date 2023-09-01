@@ -26,7 +26,6 @@ pipeline {
         }
         stage('Login DockerHub') {
             steps {
-               // sh 'docker login --username poornimaasundkar --password poonusumit@2397'
            sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login --username $DOCKERHUB_CREDENTIALS_USR --password-stdin'
                //  sh 'docker login --username ${DOCKERHUB_CREDENTIALS.username} --password {DOCKERHUB_CREDENTIALS.password}'
             }
@@ -43,7 +42,8 @@ pipeline {
         }
         stage('Access Webapp') {
             steps {
-                echo 'Access Webapp on https://localhost:5001'
+                sh 'my_ip=$(curl http://checkip.amazonaws.com)'
+                sh 'echo 'Access Webapp on https://$my_ip:5001''
             }
         }
     }
