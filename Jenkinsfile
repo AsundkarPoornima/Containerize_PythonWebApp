@@ -42,8 +42,10 @@ pipeline {
         }
         stage('Access Webapp') {
             steps {
-                sh my_ip=$(curl http://checkip.amazonaws.com)
-                sh echo "Access Webapp on https://${my_ip}:5001"
+                script {
+                    def my_ip = sh(script: 'curl -s http://checkip.amazonaws.com', returnStdout: true).trim()
+                    sh "echo 'Access Webapp on https://${my_ip}:5001'"
+                }
             }
         }
     }
