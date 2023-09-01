@@ -42,7 +42,7 @@ pipeline {
         }
         stage('Access Webapp') {
             steps {
-                sh echo "Access Webapp on https://${curl "http://checkip.amazonaws.com"}:5001"
+                sh echo Access Webapp on "https://${curl "http://checkip.amazonaws.com"}:5001"
             }
         }
     }   
