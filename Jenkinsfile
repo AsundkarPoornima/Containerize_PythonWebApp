@@ -44,7 +44,7 @@ pipeline {
             steps {
                 script {
                     def my_ip = sh(script: 'curl -s http://checkip.amazonaws.com', returnStdout: true).trim()
-                    sh "echo 'Access Webapp on https://${my_ip}:5001'"
+                    sh "echo 'Access Webapp on http://${my_ip}:5001'"
                 }
             }
         }
