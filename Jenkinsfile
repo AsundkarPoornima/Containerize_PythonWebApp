@@ -30,8 +30,9 @@ pipeline {
                     withCredentials([usernamePassword(credentialsId: 'DockerHub', usernameVariable: 'DOCKERHUB_USERNAME', passwordVariable: 'DOCKERHUB_PASSWORD')]) {
                         sh "docker login --username $DOCKERHUB_USERNAME --password-stdin <<< $DOCKERHUB_PASSWORD"
                     }
+                }
             }
-        }
+        }   
         stage('Push Image') {
             steps {
                 sh 'docker push poornimaasundkar/mywebapp1:${BUILD_NUMBER}'
