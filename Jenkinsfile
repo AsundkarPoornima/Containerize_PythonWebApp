@@ -2,9 +2,9 @@ pipeline {
     agent {
         label 'agent-linux'
     }
-   /* environment{
+    environment{
          DOCKERHUB_CREDENTIALS = credentials('DockerHub')
-    }*/
+    }
     stages {
         stage('Cleanup') {
             steps {
@@ -26,11 +26,12 @@ pipeline {
         }
         stage('Login DockerHub') {
             steps {
-           /*     script {
+                script {
                     withCredentials([usernamePassword(credentialsId: 'DockerHub', usernameVariable: 'DOCKERHUB_USERNAME', passwordVariable: 'DOCKERHUB_PASSWORD')]) {
-                        sh "docker login --username $DOCKERHUB_USERNAME --password-stdin <<< $DOCKERHUB_PASSWORD"
+                      //  sh "docker login --username $DOCKERHUB_USERNAME --password-stdin <<< $DOCKERHUB_PASSWORD"
+                         sh "echo $DOCKERHUB_PASSWORD | docker login --username $DOCKERHUB_USERNAME --password-stdin"
                     }
-                }*/
+                }
                 sh 'docker login --username poornimaasundkar --password poonusumit@2397'
             }
         }   
