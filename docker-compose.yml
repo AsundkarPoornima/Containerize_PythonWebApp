@@ -1,0 +1,10 @@
+version: "3"
+services:
+  webapp:
+      image: python:3.8
+      working_dir: /application
+      volumes:
+        - .:/application
+      ports:
+        - 5001:5000
+      command: python webapp.py
