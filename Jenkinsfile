@@ -4,7 +4,7 @@ pipeline {
     }
     environment{
          DOCKERHUB_CREDENTIALS = credentials('DockerHub')
-         DOCKER_IMAGE_NAME = "$DOCKERHUB_USERNAME/mywebapp1:${BUILD_NUMBER}"
+        DOCKER_IMAGE_NAME = "$DOCKERHUB_USERNAME/mywebapp1:${BUILD_NUMBER}"
     }
     stages {
         stage('Cleanup') {
@@ -37,7 +37,7 @@ pipeline {
         }   
         stage('Push Image') {
             steps {
-                sh "docker push $DOCKER_IMAGE_NAME "
+                sh "docker push $DOCKER_IMAGE_NAME"
             }
         }
         stage('Run Container') {
