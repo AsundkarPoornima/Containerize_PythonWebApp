@@ -4,13 +4,14 @@ pipeline {
     }
     environment{
          DOCKERHUB_CREDENTIALS = credentials('DockerHub')
+         DOCKER_IMAGE_NAME = "$DOCKERHUB_USERNAME/mywebapp1:${BUILD_NUMBER}"
     }
     stages {
         stage('Cleanup') {
             steps {
                 sh 'rm -rf /var/lib/jenkins/workspace/project-1.0-pipeline@2'
-               /* sh 'docker stop mywebapp1_container'
-      		    sh 'docker rm mywebapp1_container'*/
+                sh 'docker stop mywebapp1_container || true'
+      		    sh 'docker rm mywebapp1_container || true'
             }
         }
         stage('Clone Code') {
@@ -21,7 +22,7 @@ pipeline {
         }
         stage('Build Image') {
             steps {
-                sh "docker build -t $DOCKERHUB_USERNAME/mywebapp1:${BUILD_NUMBER} ."
+                sh "docker build -t $DOCKER_IMAGE_NAME ."
             }
         }
         stage('Login DockerHub') {
@@ -36,12 +37,12 @@ pipeline {
         }   
         stage('Push Image') {
             steps {
-                sh "docker push $DOCKERHUB_USERNAME/mywebapp1:${BUILD_NUMBER}"
+                sh "docker push $DOCKER_IMAGE_NAME "
             }
         }
         stage('Run Container') {
             steps {
-                sh "docker run -d -p 5001:5000 --name mywebapp1_container $DOCKERHUB_USERNAME/mywebapp1:${BUILD_NUMBER}"
+                sh "docker run -d -p 5001:5000 --name mywebapp1_container $DOCKER_IMAGE_NAME"
             }
         }
         stage('Access Webapp') {
