@@ -5,4 +5,5 @@ COPY . /application
 WORKDIR /application
 
 RUN python -m pip install flask
-CMD python webapp.py
+ENTRYPOINT ["python"]
+CMD  ["webapp.py"]
