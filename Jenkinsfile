@@ -10,8 +10,8 @@ pipeline {
         stage('Cleanup') {
             steps {
                 sh 'rm -rf /var/lib/jenkins/workspace/project-1.0-pipeline@2'
-                sh 'docker stop mywebapp1_container || true'
-      		    sh 'docker rm mywebapp1_container || true'
+              /*  sh 'docker stop mywebapp1_container || true'
+      		    sh 'docker rm mywebapp1_container || true'*/
             }
         }
         stage('Clone Code') {
