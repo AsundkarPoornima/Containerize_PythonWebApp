@@ -42,6 +42,7 @@ pipeline {
         }
         stage('Compose up') {
             steps {
+                 sh 'cat docker-compose.yml'
                  sh "docker-compose --env-file .env up"
             }
         }
