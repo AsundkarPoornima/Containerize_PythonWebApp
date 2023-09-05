@@ -37,7 +37,7 @@ pipeline {
         }   
         stage('Push Image') {
             steps {
-                sh "docker push$DOCKER_IMAGE_NAME/mywebapp1:${BUILD_NUMBER}"
+                sh "docker push $DOCKER_IMAGE_NAME/mywebapp1:${BUILD_NUMBER}"
             }
         }
         stage('Run Container') {
