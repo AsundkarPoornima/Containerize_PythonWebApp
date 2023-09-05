@@ -8,4 +8,5 @@ services:
         - .:/application
       ports:
         - 5001:5000
+      env_file: .env
       command: python webapp.py
