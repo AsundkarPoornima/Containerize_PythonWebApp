@@ -2,6 +2,7 @@ version: "3"
 services:
   webapp:
       image: python:3.8
+      tty: true
       working_dir: /application
       volumes:
         - .:/application
