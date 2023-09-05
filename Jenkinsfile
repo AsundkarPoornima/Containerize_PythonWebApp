@@ -20,6 +20,26 @@ pipeline {
                 checkout scm     
             }
         }
+        stage('Build Image') {
+            steps {
+                sh "docker build -t $DOCKER_IMAGE_NAME/mywebapp1:${BUILD_NUMBER} ."
+            }
+        }
+        stage('Login DockerHub') {
+            steps {
+                script {
+                    withCredentials([usernamePassword(credentialsId: 'DockerHub', usernameVariable: 'DOCKERHUB_USERNAME', passwordVariable: 'DOCKERHUB_PASSWORD')]) {
+                      //  sh "docker login --username $DOCKERHUB_USERNAME --password-stdin <<< $DOCKERHUB_PASSWORD"
+                         sh "echo $DOCKERHUB_PASSWORD | docker login --username $DOCKERHUB_USERNAME --password-stdin"
+                    }
+                }
+            }
+        }   
+        stage('Push Image') {
+            steps {
+                sh "docker push $DOCKER_IMAGE_NAME/mywebapp1:${BUILD_NUMBER}"
+            }
+        }
         stage('Compose build') {
             steps {
                 sh "docker-compose build"
@@ -32,11 +52,6 @@ pipeline {
                  sh "docker-compose up -d"
             }
         }
-       /* stage('Build Image') {
-            steps {
-                sh "docker build -t $DOCKER_IMAGE_NAME/mywebapp1:${BUILD_NUMBER} ."
-            }
-        }*/
     /*    stage('Login DockerHub') {
             steps {
                 script {
