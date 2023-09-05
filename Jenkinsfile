@@ -1,6 +1,9 @@
 pipeline {
     agent {
-        label 'agent-linux'
+        docker{
+            image 'agent-image:latest'
+        }
+       // label 'agent-linux'
     }
     environment{
          DOCKERHUB_CREDENTIALS = credentials('DockerHub')
