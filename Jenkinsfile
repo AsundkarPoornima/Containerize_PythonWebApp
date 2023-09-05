@@ -40,16 +40,9 @@ pipeline {
                 sh "docker push $DOCKER_IMAGE_NAME/mywebapp1:${BUILD_NUMBER}"
             }
         }
-        stage('Compose build') {
-            steps {
-                sh "docker-compose build"
-              //  sh "docker-compose push"
-                
-            }
-        }
         stage('Compose up') {
             steps {
-                 sh "docker-compose up -d"
+                 sh "docker-compose --env-file .env up"
             }
         }
     /*    stage('Login DockerHub') {
