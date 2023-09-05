@@ -20,12 +20,24 @@ pipeline {
                 checkout scm     
             }
         }
-        stage('Build Image') {
+        stage('Compose build') {
+            steps {
+                sh "docker-compose build"
+              //  sh "docker-compose push"
+                
+            }
+        }
+        stage('Compose up') {
+            steps {
+                 sh "docker-compose up -d"
+            }
+        }
+       /* stage('Build Image') {
             steps {
                 sh "docker build -t $DOCKER_IMAGE_NAME/mywebapp1:${BUILD_NUMBER} ."
             }
-        }
-        stage('Login DockerHub') {
+        }*/
+    /*    stage('Login DockerHub') {
             steps {
                 script {
                     withCredentials([usernamePassword(credentialsId: 'DockerHub', usernameVariable: 'DOCKERHUB_USERNAME', passwordVariable: 'DOCKERHUB_PASSWORD')]) {
@@ -44,7 +56,7 @@ pipeline {
             steps {
                 sh "docker run -d -p 5001:5000 --name mywebapp1_container $DOCKER_IMAGE_NAME/mywebapp1:${BUILD_NUMBER}"
             }
-        }
+        }*/
         stage('Access Webapp') {
             steps {
                 script {
@@ -54,9 +66,9 @@ pipeline {
             }
         }
     }
-    post {
+ /*   post {
         always {
             sh 'docker logout'
         }
-    }    
+    }    */
 }
