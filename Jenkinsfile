@@ -29,7 +29,7 @@ pipeline {
         }
         stage('Compose up') {
             steps {
-                 sh "docker-compose up -d -it"
+                 sh "docker-compose up -d"
             }
         }
        /* stage('Build Image') {
