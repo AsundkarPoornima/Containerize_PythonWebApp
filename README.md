@@ -9,10 +9,10 @@ In this project, we will be see how to *use Git, Docker Compose, Jenkins, Docker
 
 #### PreRequisites
 1. Git
-1. Jenkins
-1. Docker Compose 
-1. install docker. 
-1. Docker Hub account 
+2. Jenkins
+3. Docker Compose 
+4. install docker. 
+5. Docker Hub account 
 
 
 ### Stage-01 : Create a web page
@@ -30,6 +30,7 @@ CMD  ["webapp.py"]
 ```
 ### Stage-02 : Create a .env file 
 - Create a .env file into github
+- 
 `DOCKER_IMAGE_NAME=poornimaasundkar`
 
 ### Stage-03 : Create a Jenkins file 
@@ -48,6 +49,7 @@ CMD  ["webapp.py"]
                 sh 'rm -rf /var/lib/jenkins/workspace/project-1.0-pipeline@2'
               /*  sh 'docker stop mywebapp1_container || true'
       		    sh 'docker rm mywebapp1_container || true'*/
+            sh "docker-compose down"
             }
         }
         stage('Clone Code') {
@@ -81,26 +83,7 @@ CMD  ["webapp.py"]
                  sh "docker-compose --env-file .env up"
             }
         }
-    /*    stage('Login DockerHub') {
-            steps {
-                script {
-                    withCredentials([usernamePassword(credentialsId: 'DockerHub', usernameVariable: 'DOCKERHUB_USERNAME', passwordVariable: 'DOCKERHUB_PASSWORD')]) {
-                      //  sh "docker login --username $DOCKERHUB_USERNAME --password-stdin <<< $DOCKERHUB_PASSWORD"
-                         sh "echo $DOCKERHUB_PASSWORD | docker login --username $DOCKERHUB_USERNAME --password-stdin"
-                    }
-                }
-            }
-        }   
-        stage('Push Image') {
-            steps {
-                sh "docker push $DOCKER_IMAGE_NAME/mywebapp1:${BUILD_NUMBER}"
-            }
-        }
-        stage('Run Container') {
-            steps {
-                sh "docker run -d -p 5001:5000 --name mywebapp1_container $DOCKER_IMAGE_NAME/mywebapp1:${BUILD_NUMBER}"
-            }
-        }*/
+
         stage('Access Webapp') {
             steps {
                 script {
@@ -110,11 +93,11 @@ CMD  ["webapp.py"]
             }
         }
     }
- /*   post {
+    post {
         always {
             sh 'docker logout'
         }
-    }    */
+    }    
 }
 
 ```
