@@ -17,18 +17,24 @@ In this project, we will be see how to *use Git, Docker Compose, Jenkins, Docker
 
 ### Stage-01 : Create a web page
 Put all the web page code file into github
-
 ### Stage-02 : Create a Docker file 
 - Create a Docker file into github
  ```FROM python:3.8
+
 COPY . /application
+
 WORKDIR /application
 EXPOSE 5000
 RUN pip install flask
 ENTRYPOINT ["python"]
-CMD  ["webapp.py"]```
-
+CMD  ["webapp.py"]
+```
+ 
 ### Stage-03 : Jenkins configuration
+1. Install java and git
+1. Install jenkins
+1. Login to Jenkins console
+
 ------------------------------------------
 # Containerize_PythonWebApp
 
