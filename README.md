@@ -1,4 +1,4 @@
-116
+
 # DevOps project using Git, Docker Compose, Jenkins, and Docker
 
 
@@ -17,25 +17,119 @@ In this project, we will be see how to *use Git, Docker Compose, Jenkins, Docker
 
 ### Stage-01 : Create a web page
 Put all the web page code file into github
+
 ### Stage-02 : Create a Docker file 
 - Create a Docker file into github
  ```FROM python:3.8
-
 COPY . /application
-
 WORKDIR /application
 EXPOSE 5000
 RUN pip install flask
 ENTRYPOINT ["python"]
 CMD  ["webapp.py"]
 ```
- 
+### Stage-03 : Create a Jenkins file 
+- Create a Jenkins file into github
+```pipeline {
+    agent {
+       label 'agent-linux'
+    }
+    environment{
+         DOCKERHUB_CREDENTIALS = credentials('DockerHub')
+         DOCKER_IMAGE_NAME = "poornimaasundkar"
+    }
+    stages {
+        stage('Cleanup') {
+            steps {
+                sh 'rm -rf /var/lib/jenkins/workspace/project-1.0-pipeline@2'
+              /*  sh 'docker stop mywebapp1_container || true'
+      		    sh 'docker rm mywebapp1_container || true'*/
+            }
+        }
+        stage('Clone Code') {
+            steps {
+                checkout scm     
+            }
+        }
+        stage('Build Image') {
+            steps {
+                sh "docker build -t $DOCKER_IMAGE_NAME/mywebapp1:${BUILD_NUMBER} ."
+            }
+        }
+        stage('Login DockerHub') {
+            steps {
+                script {
+                    withCredentials([usernamePassword(credentialsId: 'DockerHub', usernameVariable: 'DOCKERHUB_USERNAME', passwordVariable: 'DOCKERHUB_PASSWORD')]) {
+                      //  sh "docker login --username $DOCKERHUB_USERNAME --password-stdin <<< $DOCKERHUB_PASSWORD"
+                         sh "echo $DOCKERHUB_PASSWORD | docker login --username $DOCKERHUB_USERNAME --password-stdin"
+                    }
+                }
+            }
+        }   
+        stage('Push Image') {
+            steps {
+                sh "docker push $DOCKER_IMAGE_NAME/mywebapp1:${BUILD_NUMBER}"
+            }
+        }
+        stage('Compose up') {
+            steps {
+                 sh 'cat docker-compose.yml'
+                 sh "docker-compose --env-file .env up"
+            }
+        }
+    /*    stage('Login DockerHub') {
+            steps {
+                script {
+                    withCredentials([usernamePassword(credentialsId: 'DockerHub', usernameVariable: 'DOCKERHUB_USERNAME', passwordVariable: 'DOCKERHUB_PASSWORD')]) {
+                      //  sh "docker login --username $DOCKERHUB_USERNAME --password-stdin <<< $DOCKERHUB_PASSWORD"
+                         sh "echo $DOCKERHUB_PASSWORD | docker login --username $DOCKERHUB_USERNAME --password-stdin"
+                    }
+                }
+            }
+        }   
+        stage('Push Image') {
+            steps {
+                sh "docker push $DOCKER_IMAGE_NAME/mywebapp1:${BUILD_NUMBER}"
+            }
+        }
+        stage('Run Container') {
+            steps {
+                sh "docker run -d -p 5001:5000 --name mywebapp1_container $DOCKER_IMAGE_NAME/mywebapp1:${BUILD_NUMBER}"
+            }
+        }*/
+        stage('Access Webapp') {
+            steps {
+                script {
+                    def my_ip = sh(script: 'curl -s http://checkip.amazonaws.com', returnStdout: true).trim()
+                    sh "echo 'Access Webapp on http://${my_ip}:5001'"
+                }
+            }
+        }
+    }
+ /*   post {
+        always {
+            sh 'docker logout'
+        }
+    }    */
+}
+
+```
+  
 ### Stage-03 : Jenkins configuration
 1. Install java and git
-1. Install jenkins
-1. Login to Jenkins console
+2. Install jenkins
+3. Login to Jenkins console
 
+Here we use 2 variables 
+ - `BUILD_ID` -  The current build id
+ - `DOCKER_IMAGE_NAME` - Name of the DockerHub account.
+ - `DOCKERHUB_CREDENTIALS` -DockerAccount Credentials in Jenkins
+
+1. Login to Docker Agent and check images and containers. (no images and containers)
+3. Execute Jenkins job
+4. Check images in Docker hub. Now you could able to see new images pushed to your DockerHub account
 ------------------------------------------
+
 # Containerize_PythonWebApp
 
 # Build Build DockerImage
