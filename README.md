@@ -106,6 +106,7 @@ CMD  ["webapp.py"]
 1. Install java and git
 2. Install jenkins
 3. Login to Jenkins console
+4. Create a pipeline project 
 
 Here we use 2 variables 
  - `BUILD_ID` -  The current build id
