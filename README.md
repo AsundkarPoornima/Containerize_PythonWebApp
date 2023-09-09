@@ -1,3 +1,34 @@
+116
+# DevOps project using Git, Docker Compose, Jenkins, and Docker
+
+
+
+In this project, we will be see how to *use Git, Docker Compose, Jenkins, DockerHub, Docker to DEPLOY on a docker container.,*
+
+*Follow the Steps*
+
+#### PreRequisites
+1. Git
+1. Jenkins
+1. Docker Compose 
+1. install docker. 
+1. Docker Hub account 
+
+
+### Stage-01 : Create a web page
+Put all the web page code file into github
+
+### Stage-02 : Create a Docker file 
+- Create a Docker file into github
+ ```FROM python:3.8
+COPY . /application
+WORKDIR /application
+EXPOSE 5000
+RUN pip install flask
+ENTRYPOINT ["python"]
+CMD  ["webapp.py"]```
+
+------------------------------------------
 # Containerize_PythonWebApp
 
 # Build Build DockerImage
