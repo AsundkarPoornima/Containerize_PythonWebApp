@@ -28,6 +28,10 @@ RUN pip install flask
 ENTRYPOINT ["python"]
 CMD  ["webapp.py"]
 ```
+### Stage-02 : Create a .env file 
+- Create a .env file into github
+`DOCKER_IMAGE_NAME=poornimaasundkar`
+
 ### Stage-03 : Create a Jenkins file 
 - Create a Jenkins file into github
 ```pipeline {
