@@ -120,10 +120,10 @@ services:
 5. Create required credentials
 6. Create Agent
 7. Create webhook
-   -In jenkins,
+   - In jenkins,
      Navigate to the Project Pipeline > Configure.
      Go to, GitHub hook trigger for GITScm polling and check the checkbox.
-   -In GitHub,
+   - In GitHub,
      Go to Project Repo and under Repo name click on Settings
      In left sidebar, click on webhook
      Give the payload url ie http://http://{Agent-public-IP}/github-webhook/
