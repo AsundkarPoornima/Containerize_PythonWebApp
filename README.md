@@ -121,10 +121,16 @@ services:
    * Click Configure, and then select the Pipeline tab.
    * Select the Pipeline script from SCM option in the Definition field.
    * Select the Git option from the drop-down list in the SCM field.
+  
+     <img width="371" alt="image" src="https://github.com/AsundkarPoornima/Containerize_PythonWebApp/assets/123767916/2a2f2d92-c371-48ea-8021-2bb552bd9fc8">
+
    * Enter the URL of the Git repository in the Repository URL field where you stored your pipeline script.
    * Select the credentials of the Git repository from the drop-down list.
    * Optional: Enter the branch name of the Git repository in the Branch Specifier field.
    * Enter the path of the script that you stored in the Git repository in the Script path field.
+
+     <img width="325" alt="image" src="https://github.com/AsundkarPoornima/Containerize_PythonWebApp/assets/123767916/86de3948-21cc-40c3-bf72-4f4f95419c67">
+
    * Click Save.
 7. Create required credentials
    Go to Credentials → Global → Add credentials and fill out the form with your username and password.
