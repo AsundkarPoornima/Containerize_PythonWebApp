@@ -5,7 +5,6 @@ pipeline {
     environment{
          DOCKERHUB_CREDENTIALS = credentials('DockerHub')
          DOCKER_IMAGE_NAME = "poornimaasundkar"
-         sh 'docker-compose --env-file .env up'
     }
     stages {
         stage('Cleanup') {
@@ -13,6 +12,7 @@ pipeline {
                 sh 'rm -rf /var/lib/jenkins/workspace/project-1.0-pipeline@2'
               /*  sh 'docker stop mywebapp1_container || true'
       		    sh 'docker rm mywebapp1_container || true'*/
+                sh 'docker-compose --env-file .env up'
             }
         }
         stage('Clone Code') {
