@@ -117,9 +117,19 @@ services:
 2. Install jenkins
 3. Login to Jenkins console
 4. Create a pipeline project named 'project-1.0-pipeline'
-5. Create required credentials
-6. Create Agent
-7. Create webhook
+5. To configure the Pipeline project by using the Pipeline script from the SCM option-
+   * Open Jenkins Pipeline project from the list.
+   * Click Configure, and then select the Pipeline tab.
+   * Select the Pipeline script from SCM option in the Definition field.
+   * Select the Git option from the drop-down list in the SCM field.
+   * Enter the URL of the Git repository in the Repository URL field where you stored your pipeline script.
+   * Select the credentials of the Git repository from the drop-down list.
+   * Optional: Enter the branch name of the Git repository in the Branch Specifier field.
+   * Enter the path of the script that you stored in the Git repository in the Script path field.
+   * Click Save.
+7. Create required credentials
+8. Create Agent
+9. Create webhook
    - In jenkins,
      Navigate to the Project Pipeline > Configure.
      Go to, GitHub hook trigger for GITScm polling and check the checkbox.
