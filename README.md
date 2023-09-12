@@ -126,16 +126,19 @@ services:
    - In GitHub,
      Go to Project Repo and under Repo name click on Settings
      In left sidebar, click on webhook
-     Give the payload url ie http://http://{Agent-public-IP}/github-webhook/
-   
+     Give the payload url ie http://{Agent-public-IP}/github-webhook
+     Select Content type as application/json
+     Select Just the push event and check Active
+     Click on Add webhook.
+
 Here we use 2 variables 
  - `BUILD_ID` -  The current build id
  - `DOCKER_IMAGE_NAME` - Name of the DockerHub account.
  - `DOCKERHUB_CREDENTIALS` -DockerAccount Credentials in Jenkins
 
 1. Login to Docker Agent and check images and containers. (no images and containers)
-3. Execute Jenkins job
-4. Check images in Docker hub. Now you could able to see new images pushed to your DockerHub account
+2. Execute Jenkins job
+3. Check images in Docker hub. Now you could able to see new images pushed to your DockerHub account
 ------------------------------------------
 
 # Containerize_PythonWebApp
