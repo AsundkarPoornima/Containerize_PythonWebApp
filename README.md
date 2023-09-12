@@ -116,8 +116,18 @@ services:
 1. Install java and git
 2. Install jenkins
 3. Login to Jenkins console
-4. Create a pipeline project 
-
+4. Create a pipeline project named 'project-1.0-pipeline'
+5. Create required credentials
+6. Create Agent
+7. Create webhook
+   -In jenkins,
+     Navigate to the Project Pipeline > Configure.
+     Go to, GitHub hook trigger for GITScm polling and check the checkbox.
+   -In GitHub,
+     Go to Project Repo and under Repo name click on Settings
+     In left sidebar, click on webhook
+     Give the payload url ie http://http://{Agent-public-IP}/github-webhook/
+   
 Here we use 2 variables 
  - `BUILD_ID` -  The current build id
  - `DOCKER_IMAGE_NAME` - Name of the DockerHub account.
