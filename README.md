@@ -128,8 +128,11 @@ services:
    * Enter the path of the script that you stored in the Git repository in the Script path field.
    * Click Save.
 7. Create required credentials
-8. Create Agent
-9. Create webhook
+   Go to Credentials → Global → Add credentials and fill out the form with your username and password.
+   <img width="557" alt="image" src="https://github.com/AsundkarPoornima/Containerize_PythonWebApp/assets/123767916/ecccbab7-205f-453f-92fd-8948e9ace2a0">
+
+9. Create Agent
+10. Create webhook
    - In jenkins,
      Navigate to the Project Pipeline > Configure.
      Go to, GitHub hook trigger for GITScm polling and check the checkbox.
