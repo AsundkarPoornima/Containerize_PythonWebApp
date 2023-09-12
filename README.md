@@ -41,7 +41,7 @@ services:
 ### Stage-04 : Create a .env file 
 - Create a .env file into github
   
-`DOCKER_IMAGE_NAME=poornimaasundkar`
+`DOCKER_IMAGE_NAME={DockerHub Account}
 
 ### Stage-05 : Create a Jenkins file 
 - Create a Jenkinsfile into github
@@ -110,7 +110,12 @@ services:
 }
 
 ```
-  
+Here we use 4 variables 
+ - `BUILD_ID` -  The current build id
+ - `DOCKER_IMAGE_NAME` - Name of the DockerHub account.
+ - `DOCKERHUB_CREDENTIALS` -DockerAccount Credentials in Jenkins
+ - `my_ip` -Displays Private IP
+   
 ### Stage-06 : Jenkins configuration
 1. Install java and git
 2. Install jenkins
@@ -122,53 +127,50 @@ services:
    * Select the Pipeline script from SCM option in the Definition field.
    * Select the Git option from the drop-down list in the SCM field.
   
-     <img width="371" alt="image" src="https://github.com/AsundkarPoornima/Containerize_PythonWebApp/assets/123767916/2a2f2d92-c371-48ea-8021-2bb552bd9fc8">
+      <img width="371" alt="image" src="https://github.com/AsundkarPoornima/Containerize_PythonWebApp/assets/123767916/2a2f2d92-c371-48ea-8021-2bb552bd9fc8">
 
    * Enter the URL of the Git repository in the Repository URL field where you stored your pipeline script.
    * Select the credentials of the Git repository from the drop-down list.
    * Optional: Enter the branch name of the Git repository in the Branch Specifier field.
    * Enter the path of the script that you stored in the Git repository in the Script path field.
 
-     <img width="325" alt="image" src="https://github.com/AsundkarPoornima/Containerize_PythonWebApp/assets/123767916/86de3948-21cc-40c3-bf72-4f4f95419c67">
+      <img width="325" alt="image" src="https://github.com/AsundkarPoornima/Containerize_PythonWebApp/assets/123767916/86de3948-21cc-40c3-bf72-4f4f95419c67">
 
    * Click Save.
-7. Create required credentials
+6. Create required credentials
    Go to Credentials → Global → Add credentials and fill out the form with your username and password.
    
     <img width="557" alt="image" src="https://github.com/AsundkarPoornima/Containerize_PythonWebApp/assets/123767916/ecccbab7-205f-453f-92fd-8948e9ace2a0">
-9. Create Agent
-10. Create webhook
+7. Create Agent
+   *
+9. Create webhook
    * In jenkins,
-     * Navigate to the Project Pipeline > Configure.
+      * Navigate to the Project Pipeline > Configure.
        Go to, GitHub hook trigger for GITScm polling and check the checkbox.
        
         <img width="368" alt="image" src="https://github.com/AsundkarPoornima/Containerize_PythonWebApp/assets/123767916/3af35608-e68b-4810-8733-b4f4c276e362">
-   * In GitHub,
-     * Go to Project Repo and under Repo name click on Settings
+    * In GitHub,
+      * Go to Project Repo and under Repo name click on Settings
        
-        <img width="706" alt="image" src="https://github.com/AsundkarPoornima/Containerize_PythonWebApp/assets/123767916/412f4613-622d-4f6d-9696-b9206218f37f">
-      * In left sidebar, click on webhook
+         <img width="706" alt="image" src="https://github.com/AsundkarPoornima/Containerize_PythonWebApp/assets/123767916/412f4613-622d-4f6d-9696-b9206218f37f">
+       * In left sidebar, click on webhook
         
-        <img width="382" alt="image" src="https://github.com/AsundkarPoornima/Containerize_PythonWebApp/assets/123767916/ab4803b2-025c-4e80-96a3-cd3787e1888a">
-     * click on Add Webhook
+         <img width="382" alt="image" src="https://github.com/AsundkarPoornima/Containerize_PythonWebApp/assets/123767916/ab4803b2-025c-4e80-96a3-cd3787e1888a">
+      * click on Add Webhook
        
-        <img width="622" alt="image" src="https://github.com/AsundkarPoornima/Containerize_PythonWebApp/assets/123767916/b30a9ab6-5f20-4ba1-8da3-26cea69e8c94">
+         <img width="622" alt="image" src="https://github.com/AsundkarPoornima/Containerize_PythonWebApp/assets/123767916/b30a9ab6-5f20-4ba1-8da3-26cea69e8c94">
 
-      * Give the payload url ie http://{Agent-public-IP}/github-webhook
+       * Give the payload url ie http://{Agent-public-IP}/github-webhook
         .
-         <img width="382" alt="image" src="https://github.com/AsundkarPoornima/Containerize_PythonWebApp/assets/123767916/d75191bc-48a8-4f41-b909-1d5fceb08d76">
+          <img width="382" alt="image" src="https://github.com/AsundkarPoornima/Containerize_PythonWebApp/assets/123767916/d75191bc-48a8-4f41-b909-1d5fceb08d76">
 
-     * Select Content type as application/json
-     * Select Just the push event and check Active
-     * Click on Add webhook.
+      * Select Content type as application/json
+      * Select Just the push event and check Active
+      * Click on Add webhook.
        
-        <img width="299" alt="image" src="https://github.com/AsundkarPoornima/Containerize_PythonWebApp/assets/123767916/4c0d4fde-c014-45f5-8940-58fd17faf864">
-
-Here we use 2 variables 
- - `BUILD_ID` -  The current build id
- - `DOCKER_IMAGE_NAME` - Name of the DockerHub account.
- - `DOCKERHUB_CREDENTIALS` -DockerAccount Credentials in Jenkins
-
+         <img width="299" alt="image" src="https://github.com/AsundkarPoornima/Containerize_PythonWebApp/assets/123767916/4c0d4fde-c014-45f5-8940-58fd17faf864">
+         
+### Stage-07 : Post Configuration
 1. Login to Docker Agent and check images and containers. (no images and containers)
 2. Execute Jenkins job
 3. Check images in Docker hub. Now you could able to see new images pushed to your DockerHub account
