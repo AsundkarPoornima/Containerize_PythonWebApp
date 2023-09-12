@@ -47,22 +47,7 @@ pipeline {
                  sh "docker-compose --env-file .env up"
             }
         }
-    /*    stage('Login DockerHub') {
-            steps {
-                script {
-                    withCredentials([usernamePassword(credentialsId: 'DockerHub', usernameVariable: 'DOCKERHUB_USERNAME', passwordVariable: 'DOCKERHUB_PASSWORD')]) {
-                      //  sh "docker login --username $DOCKERHUB_USERNAME --password-stdin <<< $DOCKERHUB_PASSWORD"
-                         sh "echo $DOCKERHUB_PASSWORD | docker login --username $DOCKERHUB_USERNAME --password-stdin"
-                    }
-                }
-            }
-        }   
-        stage('Push Image') {
-            steps {
-                sh "docker push $DOCKER_IMAGE_NAME/mywebapp1:${BUILD_NUMBER}"
-            }
-        }
-        stage('Run Container') {
+    /*  stage('Run Container') {
             steps {
                 sh "docker run -d -p 5001:5000 --name mywebapp1_container $DOCKER_IMAGE_NAME/mywebapp1:${BUILD_NUMBER}"
             }
@@ -76,9 +61,9 @@ pipeline {
             }
         }
     }
- /*   post {
+    post {
         always {
             sh 'docker logout'
         }
-    }    */
+    }    
 }
