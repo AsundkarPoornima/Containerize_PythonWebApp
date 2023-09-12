@@ -5,7 +5,7 @@ pipeline {
     environment{
          DOCKERHUB_CREDENTIALS = credentials('DockerHub')
          DOCKER_IMAGE_NAME = "poornimaasundkar"
-         sh "docker-compose down"
+         sh 'ocker-compose --env-file .env up'
     }
     stages {
         stage('Cleanup') {
