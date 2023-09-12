@@ -133,16 +133,24 @@ services:
 
 9. Create Agent
 10. Create webhook
-   - In jenkins,
-     Navigate to the Project Pipeline > Configure.
-     Go to, GitHub hook trigger for GITScm polling and check the checkbox.
-   - In GitHub,
-     Go to Project Repo and under Repo name click on Settings
-     In left sidebar, click on webhook
-     Give the payload url ie http://{Agent-public-IP}/github-webhook
-     Select Content type as application/json
-     Select Just the push event and check Active
-     Click on Add webhook.
+   * In jenkins,
+     * Navigate to the Project Pipeline > Configure.
+       Go to, GitHub hook trigger for GITScm polling and check the checkbox.
+       <img width="368" alt="image" src="https://github.com/AsundkarPoornima/Containerize_PythonWebApp/assets/123767916/3af35608-e68b-4810-8733-b4f4c276e362">
+   * In GitHub,
+     * Go to Project Repo and under Repo name click on Settings
+       <img width="706" alt="image" src="https://github.com/AsundkarPoornima/Containerize_PythonWebApp/assets/123767916/412f4613-622d-4f6d-9696-b9206218f37f">
+     * In left sidebar, click on webhook
+       <img width="382" alt="image" src="https://github.com/AsundkarPoornima/Containerize_PythonWebApp/assets/123767916/ab4803b2-025c-4e80-96a3-cd3787e1888a">
+     * click on Add Webhook
+       <img width="622" alt="image" src="https://github.com/AsundkarPoornima/Containerize_PythonWebApp/assets/123767916/b30a9ab6-5f20-4ba1-8da3-26cea69e8c94">
+     * Give the payload url ie http://{Agent-public-IP}/github-webhook
+       <img width="382" alt="image" src="https://github.com/AsundkarPoornima/Containerize_PythonWebApp/assets/123767916/d75191bc-48a8-4f41-b909-1d5fceb08d76">
+
+     * Select Content type as application/json
+     * Select Just the push event and check Active
+     * Click on Add webhook.
+       <img width="299" alt="image" src="https://github.com/AsundkarPoornima/Containerize_PythonWebApp/assets/123767916/4c0d4fde-c014-45f5-8940-58fd17faf864">
 
 Here we use 2 variables 
  - `BUILD_ID` -  The current build id
