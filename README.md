@@ -11,7 +11,7 @@ In this project, we will be see how to *use Git, Docker Compose, Jenkins, Docker
 1. Git
 2. Jenkins
 3. Docker Compose 
-4. install docker. 
+4. Docker 
 5. Docker Hub account 
 
 
